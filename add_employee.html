@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+    <!-- Montserrat Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="add_employee_css.css">
+  </head>
+  <body>
+    <div class="grid-container">
+
+      <!-- Header -->
+      <header class="header">
+        <div class="menu-icon" onclick="openSidebar()">
+          <span class="material-icons-outlined">menu</span>
+        </div>
+        <div class="header-left">
+          <span class="material-icons-outlined">search</span>
+        </div>
+        <div class="header-right">
+          <!--<span class="material-icons-outlined">notifications</span>
+          <span class="material-icons-outlined">email</span>
+          <span class="material-icons-outlined">account_circle</span>-->
+          <a href="hotel_login.html"
+          <span class="material-icons-outlined">logout</span>
+          </a>
+        </div>
+      </header>
+      <!-- End Header -->
+
+      <!-- Sidebar -->
+      <aside id="sidebar">
+        <div class="sidebar-title">
+          <!--<div class="sidebar-brand">
+            <span class="material-icons-outlined">shopping_cart</span> STORE
+          </div>--> 
+          <span class="material-icons-outlined" onclick="closeSidebar()">close</span>
+        </div>
+
+        <ul class="sidebar-list">
+          <li class="sidebar-list-item">
+            <a href="index_admin.html">
+              <span class="material-icons-outlined">dashboard</span> Dashboard
+            </a>
+          </li>
+          <li class="sidebar-list-item">
+            <a href="guests1.php">
+                <span class="material-icons-outlined">king_bed</span> Bookings
+            </a>
+          </li>
+          <li class="sidebar-list-item">
+            <a href="view_complaints.php">
+                <span class="material-icons-outlined">report_problem</span> Complaints
+            </a>
+          </li>
+          <li class="sidebar-list-item">
+            <a href="add_user.php">
+                <span class="material-icons-outlined">account_circle</span> Add Users
+            </a>
+          </li>
+          <li class="sidebar-list-item">
+            <a href="add_employee.html">
+                <span class="material-icons-outlined">group_add</span> Add Employees
+            </a>
+          </li>
+          <li class="sidebar-list-item">
+            <a href="employees.php">
+                <span class="material-icons-outlined">badge</span> Employees
+            </a>
+          </li>
+          <li class="sidebar-list-item">
+            <a href="reports.html">
+                <span class="material-icons-outlined">query_stats</span> Reports
+            </a>
+          </li>
+        </ul>
+      </aside>
+      <!-- End Sidebar -->
+
+      <!-- Main -->
+      <main class="main-container">
+        <div class="main-title">
+          <h2>Add Employee</h2>
+        </div>
+        <form id="add-employee-form" action="add_employee.php" method="POST">
+            <div class="form-group">
+                <label for="employee-id">Employee ID:</label>
+                <input type="text" id="employee_id" name="employee_id" required>
+            </div>
+
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="position">Position:</label>
+                <input type="text" id="position" name="position" required>
+            </div>
+
+            <div class="form-group">
+                <label for="contact-number">Contact Number:</label>
+                <input type="integer" id="contact_no" name="contact_no" required>
+            </div>
+
+            <div class="form-group">
+                <label for="address">Address:</label>
+                <input type="text" id="address" name="address" required>
+            </div>
+
+            <div class="form-group">
+                <label for="salary">Salary:</label>
+                <input type="number" id="salary" name="salary" required>
+            </div>
+
+            <button type="submit">Submit</button>
+        </form>
+
+        </div>
+      </main>
+      <!-- End Main -->
+
+    </div>
+
+    <!-- Scripts -->
+    <!-- ApexCharts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.35.5/apexcharts.min.js"></script>
+    <!-- Custom JS -->
+    <script src="index_js.js"></script>
+  </body>
+</html>

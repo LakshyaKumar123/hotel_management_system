@@ -1,0 +1,93 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+  }
+  
+  .container {
+    max-width: 100px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 5px;
+    border-radius: 2px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  h2 {
+    margin-top: 0;
+    text-align: center;
+    color: #7527b0;
+  }
+  
+  /* Styles for labels and input fields */
+  .form-group {
+    display: flex; /* Make the group a flex container */
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    width: 120px; /* Set width for labels */
+    margin-right: 10px;
+    text-align: right; /* Align labels to the right */
+    font-weight: bold;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  select,
+  textarea {
+    width: calc(50% - 65px); /* Set width to half the remaining space */
+    padding: 5px; /* Maintain padding for better usability */
+    font-size: 0.9em; /* Maintain slightly reduced font size */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  
+  /* Style for submit button (unchanged) */
+  input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745;
+    text-align: center;
+    border: none;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  input[type="submit"]:hover {
+    background-color: #218838;
+    
+  }
+  
+  /* Custom CSS from the second code */
+  .hotel_reserve_box {
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto; /* Center the box horizontally */
+    margin-bottom: 60px;
+    padding: 40px 50px;
+    background-color: #c6badc;
+    box-shadow: 3px 5px 10px #7527b0;
+  }
+  
+  .hotel_reserve_box h3 {
+    text-align: center;
+    color: #7527b0;
+  }
+  
+  .hotel_reserve_box form {
+    text-align: left;
+  }
+  
+  .hotel_reserve_box select {
+    width: calc(100% - 22px); /* Adjusted for border width */
+  }
+  
+  .hotel_reserve_box .form-group:last-child {
+    margin-bottom: 0;
+  }
+  

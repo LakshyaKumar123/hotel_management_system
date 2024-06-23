@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Complaints</title>
+
+    <!-- Montserrat Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="manage_complaints_css.css">
+  </head>
+  <body>
+    <div class="grid-container">
+
+      <!-- Header -->
+      <header class="header">
+        <div class="menu-icon" onclick="openSidebar()">
+          <span class="material-icons-outlined">menu</span>
+        </div>
+        <!--<div class="header-left">
+          <span class="material-icons-outlined">search</span>
+        </div>-->
+        <div class="header-right">
+          <!--<span class="material-icons-outlined">notifications</span>
+          <span class="material-icons-outlined">email</span>
+          <span class="material-icons-outlined">account_circle</span>-->
+          <a href="hotel_login.html"
+          <span class="material-icons-outlined">logout</span>
+          </a>
+        </div>
+      </header>
+      <!-- End Header -->
+
+      <!-- Sidebar -->
+      <aside id="sidebar">
+        <div class="sidebar-title">
+          <!--<div class="sidebar-brand">
+            <span class="material-icons-outlined">shopping_cart</span> STORE
+          </div>--> 
+          <span class="material-icons-outlined" onclick="closeSidebar()">close</span>
+        </div>
+
+        <ul class="sidebar-list">
+          <li class="sidebar-list-item">
+            <a href="index.html">
+              <span class="material-icons-outlined">dashboard</span> Dashboard
+            </a>
+          </li>
+          <li class="sidebar-list-item">
+            <a href="rooms.html">
+                <span class="material-icons-outlined">king_bed</span> Book Rooms
+            </a>
+          </li>
+          <li class="sidebar-list-item">
+            <a href="guests.php">
+              <span class="material-icons-outlined">king_bed</span> Bookings
+            </a>
+          </li>
+          <li class="sidebar-list-item">
+            <a href="manage_complaints.html">
+                <span class="material-icons-outlined">badge</span> Add Complaint
+            </a>
+          </li>
+          <!--<li class="sidebar-list-item">
+            <a href="guests.html">
+                <span class="material-icons-outlined">group_add</span> Guests
+            </a>
+          </li>
+          <li class="sidebar-list-item">
+            <a href="#">
+                <span class="material-icons-outlined">question_answer</span> Manage Complaint
+            </a>
+          </li>
+          <li class="sidebar-list-item">
+            <a href="#">
+                <span class="material-icons-outlined">query_stats</span> Reports
+            </a>
+          </li>-->
+        </ul>
+      </aside>
+      <!-- End Sidebar -->
+
+      <!-- Main -->
+      <main class="main-container">
+        <div class="main-title">
+          <h2>Complaint Section</h2>
+          <form id="complaint-form">
+            <label for="complainant-name">Complainant Name:</label>
+            <input type="text" id="complainant_name" placeholder="Enter your name" required>
+            <label for="complaint-type">Complaint Type:</label>
+            <select id="complaint_type" required>
+                <option value="" disabled selected>Select complaint type</option>
+                <option value="service">Service</option>
+                <option value="product">Product</option>
+                <option value="staff">Staff</option>
+                <option value="other">Other</option>
+            </select>
+
+            <label for="complaint-description">Complaint Description:</label>
+            <textarea id="complaint_description" placeholder="Please describe your complaint" required></textarea>
+
+            <div class="btn-container">
+                <input type="submit" class="btn" value="Submit">
+                <input type="reset" class="btn reset" value="Reset">
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    document.getElementById("complaint-form").addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent the form from submitting
+    
+        // Get form values
+        var complainantName = document.getElementById("complainant_name").value;
+        var complaintType = document.getElementById("complaint_type").value;
+        var complaintDescription = document.getElementById("complaint_description").value;
+    
+        // Log the form data to verify it's being sent correctly
+        console.log("Complainant Name:", complainantName);
+        console.log("Complaint Type:", complaintType);
+        console.log("Complaint Description:", complaintDescription);
+    
+        // Submit the complaint using an AJAX request
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "manage_complaints.php", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    console.log("Response from server:", xhr.responseText);
+                    // Complaint submitted successfully
+                    alert("Complaint submitted successfully.");
+                    // Reset the form
+                    document.getElementById("complaint-form").reset();
+                } else {
+                    // Handle error case
+                    alert("There was an error submitting the complaint.");
+                    console.log("Error response:", xhr.responseText);
+                }
+            }
+        };
+    
+        // Send the form data as URL-encoded parameters
+        xhr.send("complainant_name=" + encodeURIComponent(complainantName) + "&complaint_type=" + encodeURIComponent(complaintType) + "&complaint_description=" + encodeURIComponent(complaintDescription));
+    });
+</script>    
+  </body>
+</html>

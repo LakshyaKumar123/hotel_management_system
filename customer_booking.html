@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Booking Form</title>
+    <style>
+        /* Additional CSS for the form layout */
+        .hotel_reserve_box {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            width: 200px;
+            margin-right: 10px;
+            font-weight: bold;
+            text-align: right;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="date"],
+        select,
+        textarea {
+            width: calc(100% - 220px); /* Adjusted width */
+            padding: 10px; /* Adjusted padding */
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        select {
+            width: calc(100% - 220px); 
+            background: transparent;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>');
+            background-repeat: no-repeat;
+            box-sizing: border-box;
+            background-position-x: calc(100% - 20px);
+            background-position-y: center;
+            background-size: 20px;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            background-color: #28a745;
+            border: none;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+<div class="hotel_reserve_box">
+    <h2>Guest Information and Hotel Reservation Form</h2>
+    <form action="customer_booking.php" method="post">
+        <!-- Guest Information Section -->
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" value="">
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" value="">
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" value="">
+        </div>
+        <div class="form-group">
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" onchange="calculateAge()">
+        </div>
+        <div class="form-group">
+            <label for="age">Age:</label>
+            <input type="text" id="age" name="age" readonly>
+        </div>
+        <div class="form-group">
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="country">Country:</label>
+            <select id="country" name="country">
+                <option value="United States">United States</option>
+                <option value="Afghanistan">Afghanistan</option>
+                <option value="Albania">Albania</option>
+                <option value="Algeria">Algeria</option>
+                <option value="American Samoa">American Samoa</option>
+                <option value="Andorra">Andorra</option>
+                <option value="Angola">Angola</option>
+                <option value="Anguilla">Anguilla</option>
+                <option value="Antartica">Antarctica</option>
+                <option value="Antigua and Barbuda">Antigua and Barbuda</option>
+                <option value="Argentina">Argentina</option>
+                <option value="Armenia">Armenia</option>
+                <option value="Aruba">Aruba</option>
+                <option value="Australia">Australia</option>
+                <option value="Austria">Austria</option>
+                <option value="Zimbabwe">Zimbabwe</option>
+            </select>
+            
+        </div>
+        <div class="form-group">
+            <label for="address">Address:</label>
+            <textarea id="address" name="address"></textarea>
+        </div>
+        <div class="form-group">
+            <label>Room/Suite Type</label>
+            <select id="room_type" name="room_type" onchange="finalCost()">
+                <option value="0" selected>Select Room/Suite </option>
+                <option value="2">Standard</option>
+                <option value="4">Deluxe</option>
+                <option value="6">Superior Deluxe</option>
+                <option value="7">Premier Deluxe</option>
+                <option value="10">Executive Suite</option>
+                <option value="11">Junior Suite</option>
+                <option value="13">Honeymoon Suite</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Number of room/suite</label>
+            <select id="room_number" name="room_number" onchange="finalCost()">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Number of persons</label>
+            <select id="person_number" name="person_number" onchange="finalCost()">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Number of children</label>
+            <select id="child_number" name="child_number" onchange="finalCost()">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Restaurant facilities?</label>
+            <select id="res_facilities" name="res_facilities" onchange="toggleFoodOptions()">
+                <option value="0" selected>Do you want restaurant facilities?</option>
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+            </select>
+        </div>
+        <div id="food_options" style="display: none;">
+            <div class="form-group">
+                <label>Breakfast</label>
+                <select id="breakfast" name="breakfast" onchange="finalCost()">
+                    <option value="0">No</option>
+                    <option value="150">Yes</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Lunch</label>
+                <select id="lunch" name="lunch" onchange="finalCost()">
+                    <option value="0">No</option>
+                    <option value="200">Yes</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Dinner</label>
+                <select id="dinner" name="dinner" onchange="finalCost()">
+                    <option value="0">No</option>
+                    <option value="250">Yes</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="check_in_date">Check-in Date</label>
+            <input type="date" id="check_in_date" min="<?php echo date('Y-m-d'); ?>" onchange="formatDateAndCalculateStay(this.value, 'check_in_date_formatted')">
+            <input type="hidden" id="check_in_date_formatted" name="check_in_date_formatted">
+        </div>
+        <div class="form-group">
+            <label for="check_out_date">Check-out Date</label>
+            <input type="date" id="check_out_date" onchange="formatDateAndCalculateStay(this.value, 'check_out_date_formatted')">
+            <input type="hidden" id="check_out_date_formatted" name="check_out_date_formatted">
+        </div>
+        
+        <div class="form-group">
+            <label>Number of Days of Stay</label>
+            <input type="text" id="stay_days" name="stay_days" readonly>
+        </div>
+        <div class="form-group">
+            <label>ID Type:</label>
+            <select id="id_type" name="id_type">
+                <option value="Aadhaar Card">Aadhaar Card</option>
+                <option value="Passport">Passport</option>
+                <option value="Pan Card">Pan Card</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>ID Number:</label>
+            <input type="text" id="id_number" name="id_number">
+        </div>
+        <div class="form-group">
+            <label>Total Cost (Rs.) :</label>
+            <span id="result" name="total_cost">0</span>
+        </div>
+
+        <input type="submit" value="Submit">
+    </form>
+</div>
+
+<script>
+    function formatDate(dateString, outputId) {
+        const date = new Date(dateString);
+        const formattedDate = date.toISOString().slice(0, 10);
+        document.getElementById(outputId).value = formattedDate;
+    }
+
+    function calculateAge() {
+        var dob = document.getElementById("dob").value;
+        var today = new Date();
+        var birthDate = new Date(dob);
+        var age = today.getFullYear() - birthDate.getFullYear();
+        var m = today.getMonth() - birthDate.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+            age--;
+        }
+        document.getElementById("age").value = age;
+    }
+
+    function toggleFoodOptions() {
+        var resFacilities = document.getElementById("res_facilities").value;
+        var foodOptions = document.getElementById("food_options");
+        if (resFacilities === '1') {
+            foodOptions.style.display = "block";
+        } else {
+            foodOptions.style.display = "none";
+        }
+        finalCost();
+    }
+
+    function formatDateAndCalculateStay(dateValue, formattedFieldId) {
+        var dateParts = dateValue.split('-');
+        var formattedDate = dateParts[2] + '-' + dateParts[1] + '-' + dateParts[0];
+        document.getElementById(formattedFieldId).value = formattedDate;
+        calculateStay(); // Call the function to calculate stay days
+    }
+
+    function calculateStay() {
+        var checkInDate = new Date(document.getElementById("check_in_date").value);
+        var checkOutDate = new Date(document.getElementById("check_out_date").value);
+        var timeDiff = Math.abs(checkOutDate.getTime() - checkInDate.getTime());
+        var stayDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+        document.getElementById("stay_days").value = stayDays;
+        finalCost(); // Update total cost based on stay days
+    }
+
+    function finalCost(){
+        var roomType = document.getElementById("room_type").value;
+        var roomNum = document.getElementById("room_number").value;
+        var personNum = document.getElementById("person_number").value;
+        var childNum = document.getElementById("child_number").value;
+        var resFacilities = document.getElementById("res_facilities").value;
+        var breakfast = document.getElementById("breakfast").value;
+        var lunch = document.getElementById("lunch").value;
+        var dinner = document.getElementById("dinner").value;
+        var stayDays = document.getElementById("stay_days").value;
+
+        var foodCost = 0;
+        if(resFacilities === '1'){
+            foodCost += parseInt(breakfast);
+            foodCost += parseInt(lunch);
+            foodCost += parseInt(dinner);
+            foodCost *= personNum; // Multiply by the number of persons
+        }
+
+        var total = (parseInt(roomType) * 1000) * parseInt(roomNum) * stayDays + foodCost + (parseInt(resFacilities) * 3000);
+
+        document.getElementById("result").innerHTML = total;
+    }
+</script>
+
+</body>
+</html>

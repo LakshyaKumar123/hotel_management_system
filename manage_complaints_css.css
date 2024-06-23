@@ -1,0 +1,177 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--white-pinkish-color);
+    color: #9e9ea4;
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  .material-icons-outlined {
+    vertical-align: middle;
+    line-height: 1px;
+    font-size: 35px;
+    color: #4CAF50;
+  }
+  
+  .grid-container {
+    display: grid;
+    grid-template-columns: 260px 1fr 1fr 1fr;
+    grid-template-rows: 0.2fr 3fr;
+    grid-template-areas:
+      'sidebar header header header'
+      'sidebar main main main';
+    height: 100vh;
+  }
+  
+/* ---------- HEADER ---------- */
+.header {
+    grid-area: header;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px 0 30px;
+    box-shadow: 0 6px 7px -3px rgba(0, 0, 0, 0.35);
+  }
+  
+  .menu-icon {
+    display: none;
+  }
+  
+  /* ---------- SIDEBAR ---------- */
+  
+  #sidebar {
+    grid-area: sidebar;
+    height: 100%;
+    background-color: #074173;
+    overflow-y: auto;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+  }
+  
+  .sidebar-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 30px 30px 30px;
+    margin-bottom: 30px;
+  }
+  
+  .sidebar-title > span {
+    display: none;
+  }
+  
+  .sidebar-brand {
+    margin-top: 15px;
+    font-size: 20px;
+    font-weight: 700;
+  }
+  
+  .sidebar-list {
+    padding: 0;
+    margin-top: 15px;
+    list-style-type: none;
+  }
+  
+  .sidebar-list-item {
+    padding: 20px 20px 20px 20px;
+    font-size: 18px;
+  }
+  
+  .sidebar-list-item:hover {
+    background-color: #2E8B57;
+    color: #ffffff;
+    cursor: pointer;
+  }
+  
+  .sidebar-list-item > a {
+    text-decoration: none;
+    color: #FFFFFF;
+  }
+  
+  .sidebar-responsive {
+    display: inline !important;
+    position: absolute;
+    /*
+      the z-index of the ApexCharts is 11
+      we want the z-index of the sidebar higher so that
+      the charts are not showing over the sidebar 
+      on small screens
+    */
+    z-index: 12 !important;
+  }
+
+/* Main Menu */
+.main-container {
+    grid-area: main;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.complaint-container {
+    width: 90%; /* Adjust the width as needed */
+    max-width: 800px; /* Limit maximum width for larger screens */
+    padding: 20px;
+    background-color: #fff; /* Background color for the container */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.main-title {
+    text-align: center;
+}
+
+#complaint-form {
+    width: 100%;
+}
+
+label {
+    font-size: 18px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+}
+
+input[type="text"],
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+textarea {
+    height: 150px;
+}
+
+.btn-container {
+    text-align: center;
+}
+
+.btn {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-right: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.btn.reset {
+    background-color: #f44336;
+}
+
+.btn:hover {
+    background-color: #3F8F41;
+}
+
+.btn.reset:hover {
+    background-color: #B71C1C;
+}
